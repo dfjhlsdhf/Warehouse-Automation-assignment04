@@ -1,6 +1,4 @@
-const {MongoClient}=require("mongodb")
-const url="mongodb://warehouse-record:cQKitrO8QOvmVOWiyl3NlaG9HQSEoU1uj37EN0VHpgHgrJx3A1o2rgCmlknwyrGwNfEZGUGe7dRtACDbcivNvw%3D%3D@warehouse-record.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@warehouse-record@"
-const client=new MongoClient(url)    
+const { client } = require('../Utils/connection')  
 module.exports = async function (context, req) {
 await client.connect();
    const database=client.db("warehouserecord")
