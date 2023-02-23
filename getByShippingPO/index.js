@@ -4,7 +4,7 @@ module.exports = async function (context, req) {
     await client.connect();
     const database=client.db("warehouserecord")
     const collection=database.collection("record")
-    let record=await collection.find({ShippingPO: req.body.ShippingPO}).toArray();
+    let record=await collection.find({ShippingPO: req.query.ShippingPO}).toArray();
 
     if(record.length==0){
         return context.res={

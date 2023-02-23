@@ -4,7 +4,7 @@ module.exports = async function (context, req) {
     await client.connect();
     const database=client.db("warehouserecord")
     const collection=database.collection("record")
-    let record=await collection.findOne({ShipmentID: req.body.ShipmentID});
+    let record=await collection.findOne({ShipmentID: req.query.ShipmentID});
     if(!record){
         return context.res={
             status:401,

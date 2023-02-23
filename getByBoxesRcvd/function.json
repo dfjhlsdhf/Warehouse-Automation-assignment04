@@ -5,9 +5,11 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
+      "route": "get/getBoxesRcvd",
       "methods": [
         "get"
       ]
+      
     },
     {
       "type": "http",
