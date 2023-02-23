@@ -1,0 +1,217 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: Azure
+    url: https://warehouse-funcs.azurewebsites.net/api
+info:
+  version: "1.0.0"
+  title: Warehouse Automation API
+  description: The APIs for Warehouse records
+paths:
+  /get/getAll:
+    get:
+      tags:
+        - Record
+      description: returns all records stored in DB
+      operationId: getAllrecords
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+  /get/getboxesrcvd:  
+    get:
+      tags:
+        - Record
+      description: returns records through boxes received
+      operationId: getByBoxesRcvd
+      parameters:
+        - in: query
+          required: true
+          name: BoxesRcvd
+          description: the number of boxes received
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+        '401':
+          description: Unauthorized
+  /get/getbyid:  
+    get:
+      tags:
+        - Record
+      description: returns records through record id
+      operationId: getByID
+      parameters:
+        - in: query
+          required: true
+          name: _id
+          description: the id of the record
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+        '401':
+          description: Unauthorized
+  /get/getbyshipmentid:  
+    get:
+      tags:
+        - Record
+      description: returns records through shipment id
+      operationId: getByShipmentID
+      parameters:
+        - in: query
+          required: true
+          name: ShipmentID
+          description: the shipment id of the record
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+        '401':
+          description: Unauthorized
+  /get/getbyshippingpo:  
+    get:
+      tags:
+        - Record
+      description: returns records through shipping po
+      operationId: getByShippingPO
+      parameters:
+        - in: query
+          required: true
+          name: ShippingPO
+          description: the shipping po of the record
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+        '401':
+          description: Unauthorized
+  /get/getbywarehouseid:  
+    get:
+      tags:
+        - Record
+      description: returns records through warehouse id
+      operationId: getByWarehouseID
+      parameters:
+        - in: query
+          required: true
+          name: WarehouseID
+          description: the warehouse id of the record
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+        '401':
+          description: Unauthorized
+  /initdb:
+    post:
+      tags:
+        - Record
+      operationId: initDB
+      responses:
+        '200':
+          description: OK
+  /creatrecord:  
+    post:
+      tags:
+        - Record
+      operationId: createRecord
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/newRecord'
+            examples:
+              record:
+                $ref: '#/components/examples/creatRecord'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+  /removerecord:
+    delete:
+      tags:
+        - Record
+      description: remove a record
+      operationId: removeRecord
+      parameters:
+        - name: _id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+components:
+  schemas:
+    Record:
+      type: object
+      properties:
+        _id:
+          type: string
+        Date:
+          type: string
+        WarehouseID:
+          type: string
+        ShippingPO:
+          type: string
+        ShipmentID:
+          type: string
+        BoxesRcvd:
+          type: string
+    newRecord:
+      type: object
+      properties:
+        Date:
+          type: string
+        WarehouseID:
+          type: string
+        ShippingPO:
+          type: string
+        ShipmentID:
+          type: string
+        BoxesRcvd:
+          type: string
+  examples:
+      creatRecord:
+        summary: An example of a new record
+        value:
+          id: 9f500471-e334-45f7-8c1d-4f346791a0e5
+          Date: Mar 10, 2022
+          WarehouseID: a908cef7-4c67-40f3-88f7-08a03ba4104e
+          ShippingPO: 71b720e3-2847-45de-bbe7-8fa099d64632
+          ShipmentID: 2
+          BoxesRcvd: 2
