@@ -4,10 +4,10 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
 const columns = [
-    { id:'_id',label:'_id',minWidth:170,align:'center'},
-    { id: 'Date', label: 'Date', minWidth: 170 ,align: 'center'},
+    { id:'_id',label:'_id',minWidth:170,align:'right'},
+    { id: 'Date', label: 'Date', minWidth: 110 ,align: 'center'},
     
-    { id: 'WarehouseID', label: 'Warehouse ID', minWidth: 100 ,align: 'right'},
+    { id: 'WarehouseID', label: 'Warehouse ID', minWidth: 170 ,align: 'right'},
     {
       id: 'ShippingPO',
       label: 'Shipping PO',
